@@ -1,5 +1,5 @@
 {
-  "name": "ngx-code-mirror-lenon",
+  "name": "ngx-code-editor",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -18,6 +18,8 @@
     "@angular/platform-browser": "~13.1.0",
     "@angular/platform-browser-dynamic": "~13.1.0",
     "@angular/router": "~13.1.0",
+    "monaco-ace-tokenizer": "^0.2.1",
+    "monaco-editor": "^0.32.1",
     "rxjs": "~7.4.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
@@ -26,6 +28,9 @@
     "@angular-devkit/build-angular": "~13.1.2",
     "@angular/cli": "~13.1.2",
     "@angular/compiler-cli": "~13.1.0",
+    "@ngneat/tailwind": "7.0.3",
+    "@tailwindcss/forms": "0.3.4",
+    "@tailwindcss/typography": "0.4.1",
     "@types/jasmine": "~3.10.0",
     "@types/node": "^12.11.1",
     "jasmine-core": "~3.10.0",
@@ -34,6 +39,8 @@
     "karma-coverage": "~2.1.0",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
+    "ng-packagr": "^13.0.0",
+    "tailwindcss": "2.2.19",
     "typescript": "~4.5.2"
   }
 }

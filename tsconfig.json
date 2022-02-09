@@ -11,6 +11,13 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
+    "paths": {
+      "@ngx-code-editor": ["projects/ngx-code-editor/src/public-api.ts"],
+      "ngx-code-editor": [
+        "dist/ngx-code-editor/ngx-code-editor",
+        "dist/ngx-code-editor"
+      ]
+    },
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,
@@ -23,6 +30,9 @@
       "dom"
     ]
   },
+  "target": "es5",
+  "module": "commonjs",
+  "allowJs": true,
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,

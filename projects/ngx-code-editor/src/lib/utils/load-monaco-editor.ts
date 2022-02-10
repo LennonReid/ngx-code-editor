@@ -61,7 +61,7 @@ export class LoadMonacoEditor {
                 id: 'groovy'
               });
               MonacoAceTokenizer.registerRulesForLanguage('groovy', new GroovyDefinition.default());
-              win.rgCodeEditor = win.monaco.editor.create(document.getElementById('rg-code-editor-container'), {
+              win.rgCodeEditor = win.monaco.editor.create(document.getElementById('ngx-code-editor-container'), {
                 value: this.defaultValue,
                 language: this.language,
                 theme: this.theme
@@ -83,7 +83,7 @@ export class LoadMonacoEditor {
         };
         if (!win.require) {
           const loaderScript: HTMLScriptElement = document.createElement('script');
-          loaderScript.id = 'aiao-load-monaco-script';
+          loaderScript.id = 'ngx-code-editor-load-monaco-script';
           loaderScript.type = 'text/javascript';
           loaderScript.src = urlJoin(this.baseUrl, '/monaco-editor/min/vs/loader.js');
           loaderScript.addEventListener('load', onGotAMDLoader);

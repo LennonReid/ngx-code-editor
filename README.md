@@ -137,7 +137,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { CodeEditorAppModule } from '@ruijie-sid/code-editor';
+import { CodeEditorAppModule } from '@ngx-code-editor';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -163,7 +163,7 @@ examples:
 
 ```typescript
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { CodeEditorAppComponent } from '@ruijie-sid/code-editor';
+import { CodeEditorAppComponent } from '@ngx-code-editor';
 
 @Component({
   selector: 'app-root',

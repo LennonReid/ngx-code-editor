@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import {CodeEditorAppComponent} from "@ngx-code-editor";
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {CodeEditorAppComponent} from "ngx-code-editor";
 
 @Component({
   selector: 'app-root',
@@ -9,7 +9,8 @@ import {CodeEditorAppComponent} from "@ngx-code-editor";
 export class AppComponent implements OnInit {
   @ViewChild(CodeEditorAppComponent) codeEditorApp?: CodeEditorAppComponent;
 
-  constructor() {}
+  constructor() {
+  }
 
   async ngOnInit() {
     await this.codeEditorApp?.ngOnInit();

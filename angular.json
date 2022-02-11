@@ -120,23 +120,23 @@
         }
       }
     },
-    "ngx-codeMirror": {
+    "code-editor": {
       "projectType": "library",
-      "root": "projects/ngx-code-editor",
-      "sourceRoot": "projects/ngx-code-editor/src",
+      "root": "projects/code-editor",
+      "sourceRoot": "projects/code-editor/src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "project": "projects/ngx-code-editor/ng-package.json"
+            "project": "projects/code-editor/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/ngx-code-editor/tsconfig.lib.prod.json"
+              "tsConfig": "projects/code-editor/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "projects/ngx-code-editor/tsconfig.lib.json"
+              "tsConfig": "projects/code-editor/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -144,13 +144,17 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/ngx-code-editor/src/test.ts",
-            "tsConfig": "projects/ngx-code-editor/tsconfig.spec.json",
-            "karmaConfig": "projects/ngx-code-editor/karma.conf.js"
+            "main": "projects/code-editor/src/test.ts",
+            "tsConfig": "projects/code-editor/tsconfig.spec.json",
+            "karmaConfig": "projects/code-editor/karma.conf.js"
           }
         }
       }
     }
   },
-  "defaultProject": "ngx-code-editor"
+  "defaultProject": "ngx-code-editor",
+  "cli": {
+    "analytics": false,
+    "packageManager": "yarn"
+  }
 }

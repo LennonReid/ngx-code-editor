@@ -1,5 +1,12 @@
 # ngx-code-editor
 The version of Angular based on [monaco-editor](https://www.npmjs.com/package/monaco-editor) and [monaco-ace-tokenizer](https://www.npmjs.com/package/monaco-ace-tokenizer)
+```
+npm i ngx-code-editor monaco-editor monaco-ace-tokenizer
+```
+or
+```
+yarn add  ngx-code-editor monaco-editor monaco-ace-tokenizer
+```
 ## get-started
 
 ### 1. Project. Json or angular.json of the required app
@@ -137,7 +144,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { CodeEditorAppModule } from '@ngx-code-editor';
+import { CodeEditorAppModule } from 'ngx-code-editor';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -154,7 +161,7 @@ export class AppModule {}
 examples:
 
 ```html
-<rg-code-editor-app (contentChange)="contentChange($event)"></rg-code-editor-app>
+<ngx-code-editor-app (contentChange)="contentChange($event)"></ngx-code-editor-app>
 ```
 
 ### 4. in ts file
@@ -163,7 +170,7 @@ examples:
 
 ```typescript
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { CodeEditorAppComponent } from '@ngx-code-editor';
+import { CodeEditorAppComponent } from 'ngx-code-editor';
 
 @Component({
   selector: 'app-root',

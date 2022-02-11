@@ -12,10 +12,12 @@
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
     "paths": {
-      "@ngx-code-editor": ["projects/ngx-code-editor/src/public-api.ts"],
       "ngx-code-editor": [
-        "dist/ngx-code-editor/ngx-code-editor",
-        "dist/ngx-code-editor"
+        "projects/code-editor/src/public-api.ts"
+      ],
+      "code-editor": [
+        "dist/code-editor/code-editor",
+        "dist/code-editor"
       ]
     },
     "declaration": false,

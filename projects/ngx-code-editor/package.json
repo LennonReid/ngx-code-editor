@@ -1,18 +1,40 @@
 {
   "name": "ngx-code-editor",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "peerDependencies": {
-    "@angular/core": ">=12.0.0-0",
-    "@angular/forms": ">=12.0.0-0",
-    "codemirror": ">=5.63.3"
+    "@angular/core": "~13.1.0",
+    "@angular/forms": "~13.1.0"
   },
   "dependencies": {
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.0",
+    "monaco-ace-tokenizer": "^0.2.1",
+    "monaco-editor": "^0.32.1"
   },
   "ngPackage": {
     "lib": {
       "entryFile": "public_api.ts"
     },
     "dest": "../../dist"
-  }
+  },
+  "description": "The version of Angular based on [monaco-editor](https://www.npmjs.com/package/monaco-editor) and [monaco-ace-tokenizer](https://www.npmjs.com/package/monaco-ace-tokenizer)",
+  "main": "karma.conf.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lenonMax/ngx-code-editor.git"
+  },
+  "keywords": [
+    "code-editor",
+    "monaco-editor",
+    "monaco-ace-tokenizer"
+  ],
+  "author": "lenonMax",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lenonMax/ngx-code-editor/issues"
+  },
+  "homepage": "https://github.com/lenonMax/ngx-code-editor#readme"
 }

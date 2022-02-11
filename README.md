@@ -1,5 +1,8 @@
 # ngx-code-editor
 The version of Angular based on [monaco-editor](https://www.npmjs.com/package/monaco-editor) and [monaco-ace-tokenizer](https://www.npmjs.com/package/monaco-ace-tokenizer)
+
+![example](./src/assets/hint.png)
+as [examples](https://aeditor.bitwiser.in/)
 ```
 npm i ngx-code-editor monaco-editor monaco-ace-tokenizer
 ```

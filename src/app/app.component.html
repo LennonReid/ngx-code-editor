@@ -1,4 +1,4 @@
-<ngx-code-editor-app [selection]="selection" [theme]="theme" [language]="language" [defaultValue]="defaultValue" (contentChange)="contentChange($event)"></ngx-code-editor-app>
+<ngx-code-editor-app [baseUrl]="baseUrl" [selection]="selection" [theme]="theme" [language]="language" [defaultValue]="defaultValue" (contentChange)="contentChange($event)"></ngx-code-editor-app>
 <button (click)="getValue()">getValue</button>
 <ng-template #selection>
   <select [(ngModel)]="language" (change)="languageChange()">

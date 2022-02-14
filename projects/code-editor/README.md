@@ -1,6 +1,8 @@
 # ngx-code-editor
 The version of Angular based on [monaco-editor](https://www.npmjs.com/package/monaco-editor) and [monaco-ace-tokenizer](https://www.npmjs.com/package/monaco-ace-tokenizer)
 
+[Demo](https://lenonmax.github.io/ngx-code-editor/)
+
 ![example](src/assets/hint.png)
 as [examples](https://aeditor.bitwiser.in/)
 ```
@@ -52,16 +54,16 @@ examples:
         "assets": [
           "apps/dev-code-editor/src/favicon.ico",
           "apps/dev-code-editor/src/assets",
-+          {
-+            "glob": "**/*",
-+            "input": "./node_modules/monaco-editor",
-+            "output": "monaco-editor/"
-+          },
-+          {
-+            "glob": "**/*",
-+            "input": "./node_modules/monaco-ace-tokenizer",
-+            "output": "monaco-ace-tokenizer/"
-+          }
+          +          {
+            +            "glob": "**/*",
+          +            "input": "./node_modules/monaco-editor",
+          +            "output": "monaco-editor/"
+          +          },
+          +          {
+            +            "glob": "**/*",
+          +            "input": "./node_modules/monaco-ace-tokenizer",
+          +            "output": "monaco-ace-tokenizer/"
+          +          }
         ],
         "styles": ["apps/dev-code-editor/src/styles.scss"],
         "scripts": []

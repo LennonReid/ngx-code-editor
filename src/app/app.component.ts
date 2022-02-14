@@ -7,11 +7,26 @@ import {CodeEditorAppComponent} from "ngx-code-editor";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+
+  /* default language */
+  language: string = 'java';
+  /* default theme */
+  theme: string = 'vs';
+  /* default value of the content */
+  defaultValue = '';
+
   @ViewChild(CodeEditorAppComponent) codeEditorApp?: CodeEditorAppComponent;
 
   constructor() {
   }
 
+  /**
+   * switch the code language
+   */
+  languageChange() {
+    this.defaultValue = '';
+    this.codeEditorApp?.setValue('test');
+  }
   async ngOnInit() {
     await this.codeEditorApp?.ngOnInit();
   }

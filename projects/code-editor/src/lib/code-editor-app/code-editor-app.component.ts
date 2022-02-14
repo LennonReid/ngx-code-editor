@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, TemplateRef} from '@angular/core';
 import {LoadMonacoEditor} from "../utils/load-monaco-editor";
 import {getBaseMonacoUrl} from "../utils/base-url";
 
@@ -9,7 +9,7 @@ let loader: LoadMonacoEditor;
   templateUrl: './code-editor-app.component.html',
   styleUrls: ['./code-editor-app.component.scss']
 })
-export class CodeEditorAppComponent implements OnInit {
+export class CodeEditorAppComponent implements OnInit, OnChanges {
   /* default path */
   @Input() baseUrl?: string;
   /**
@@ -33,8 +33,25 @@ export class CodeEditorAppComponent implements OnInit {
   @Input() languageLabel: string = 'CodeLanguages';
   /* the label of switch theme */
   @Input() themeLabel: string = 'Themes';
+  /* customize the selelection Area */
+  @Input() selection?: TemplateRef<any>;
 
-  constructor() {}
+  constructor() {
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['language'] && !changes['language'].firstChange) {
+      this.languageChange();
+    }
+    if (changes['theme'] && !changes['theme'].firstChange) {
+      this.themeChange();
+    }
+    // todo: not working,doubt that there is a problem of reference path
+    if (changes['defaultValue'] && !changes['defaultValue'].firstChange) {
+      this.setValue();
+    }
+  }
+
   async ngOnInit() {
     const baseUrl = getBaseMonacoUrl(this.baseUrl);
     if (!loader) {
@@ -71,5 +88,13 @@ export class CodeEditorAppComponent implements OnInit {
     const win = window as any;
     const value = win.rgCodeEditor.getValue();
     return value;
+  }
+
+  /**
+   * set the value of content
+   */
+  setValue(value?: string) {
+    const win = window as any;
+    win.rgCodeEditor.setValue(value || this.defaultValue);
   }
 }

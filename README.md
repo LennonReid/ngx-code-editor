@@ -164,7 +164,7 @@ export class AppModule {}
 examples:
 
 ```html
-<ngx-code-editor-app (contentChange)="contentChange($event)"></ngx-code-editor-app>
+<ngx-code-editor-app [selection]="selection" [theme]="theme" [language]="language" [defaultValue]="defaultValue" (contentChange)="contentChange($event)"></ngx-code-editor-app>
 ```
 
 ### 4. in ts file
@@ -172,8 +172,9 @@ examples:
 examples:
 
 ```typescript
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { CodeEditorAppComponent } from 'ngx-code-editor';
+
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {CodeEditorAppComponent} from "ngx-code-editor";
 
 @Component({
   selector: 'app-root',
@@ -181,30 +182,46 @@ import { CodeEditorAppComponent } from 'ngx-code-editor';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+
+  /* default language */
+  language: string = 'java';
+  /* default theme */
+  theme: string = 'vs';
+  /* default value of the content */
+  defaultValue = '';
+
   @ViewChild(CodeEditorAppComponent) codeEditorApp?: CodeEditorAppComponent;
 
-  constructor() {}
+  constructor() {
+  }
 
-  /* Note that you must wait for the initialization to complete in the CodeEditorAppComponent, otherwise an error will be reported and it will be used before it is initialized。
+  /**
+   * switch the code language
+   */
+  languageChange() {
+    this.defaultValue = '';
+    this.codeEditorApp?.setValue('test');
+  }
   async ngOnInit() {
     await this.codeEditorApp?.ngOnInit();
   }
 
   /**
-   * get value
+   * get current value
    */
   getValue() {
     console.log(this.codeEditorApp?.getValue());
   }
 
   /**
-   * Listen for content change values
+   * listen value changes
    * @param res value
    */
   contentChange(res: string) {
     console.log(res);
   }
 }
+
 ```
 
 ## content of repository
@@ -214,21 +231,21 @@ export class AppComponent implements OnInit {
 #### core module
 
 > - code-editor/
-    >   > This folder is the core file, just render the code content area, not involve any other functions
-    >   >
-    >   > > Mainly involved in functions
-    >   > >
-    >   > > 1. height,default 800px
-    >   > > 2. width,default 600px
-    >   > > 3. placeholder----<i>not supported now</b>
+>> This folder is the core file, just render the code content area, not involve any other functions
+>>
+>>> Mainly involved in functions
+>>>
+>>> 1. height,default 800px
+>>> 2. width,default 600px
+>>> 3. placeholder----<i>not supported now</b>
 > - utils/
-    >   > The core algorithm files are in this folder
-    >   >
-    >   > > Mainly involved content
-    >   > >
-    >   > > 1. base-url => get default url
-    >   > > 2. load-monaco-editor => moaco loader
-    >   > > 3. urlJoin => join string path
+>> The core algorithm files are in this folder
+>>
+>>> Mainly involved content
+>>>
+>>> 1. base-url => get default url
+>>> 2. load-monaco-editor => moaco loader
+>>> 3. urlJoin => join string path
 
 #### function module
 

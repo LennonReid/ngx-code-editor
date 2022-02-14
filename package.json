@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "build:github": "ng build --prod --output-path demos --base-href /ngx-code-editor/"
   },
   "private": false,
   "dependencies": {

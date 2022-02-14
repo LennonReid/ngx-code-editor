@@ -55,7 +55,8 @@ export class CodeEditorAppComponent implements OnInit, OnChanges {
   async ngOnInit() {
     const baseUrl = getBaseMonacoUrl(this.baseUrl);
     if (!loader) {
-      loader = new LoadMonacoEditor(baseUrl, this.language, this.theme, this.defaultValue, this.localizeCode);
+      // todo: fixed '' cause the script will by the root path
+      loader = new LoadMonacoEditor('', this.language, this.theme, this.defaultValue, this.localizeCode);
     }
     await loader.load();
     // listen the change of keyUp and output the value

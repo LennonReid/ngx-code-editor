@@ -8,6 +8,8 @@ import {CodeEditorAppComponent} from "ngx-code-editor";
 })
 export class AppComponent implements OnInit {
 
+  /* baseHref of the assets */
+  baseUrl = 'ngx-code-editor'
   /* default language */
   language: string = 'java';
   /* default theme */

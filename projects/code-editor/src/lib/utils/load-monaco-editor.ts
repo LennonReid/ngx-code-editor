@@ -61,11 +61,6 @@ export class LoadMonacoEditor {
                 id: 'groovy'
               });
               MonacoAceTokenizer.registerRulesForLanguage('groovy', new GroovyDefinition.default());
-              win.rgCodeEditor = win.monaco.editor.create(document.getElementById('ngx-code-editor-container'), {
-                value: this.defaultValue,
-                language: this.language,
-                theme: this.theme
-              });
               // /* To load All languages */
               // win.require(['vs/editor/editor.main', 'tokenizer/monaco-tokenizer'], (_: any, MonacoAceTokenizer: any) =>{
               //   MonacoAceTokenizer.AVAILABLE_LANGUAGES.forEach((lang: string) => {
@@ -85,7 +80,7 @@ export class LoadMonacoEditor {
           const loaderScript: HTMLScriptElement = document.createElement('script');
           loaderScript.id = 'ngx-code-editor-load-monaco-script';
           loaderScript.type = 'text/javascript';
-          loaderScript.src = ('/monaco-editor/min/vs/loader.js');
+          loaderScript.src = urlJoin(this.baseUrl, 'monaco-editor/min/vs/loader.js');
           loaderScript.addEventListener('load', onGotAMDLoader);
           document.body.appendChild(loaderScript);
         } else {
@@ -94,5 +89,23 @@ export class LoadMonacoEditor {
       });
     }
     return this.#load;
+  }
+  /**
+   * create the monaco-edtior by the dom
+   */
+  createMonacoEditor() {
+    const win = window as any;
+    win.ngxCodeEditor = win.monaco.editor.create(document.getElementById('ngx-code-editor-container'), {
+      // todo: options from params
+      value: this.defaultValue,
+      automaticLayout: true,
+      wordWrap: 'on',
+      autoClosingBrackets: 'beforeWhitespace',
+      autoClosingQuotes: 'beforeWhitespace',
+      smoothScrolling: true,
+      suggestFontSize: 16,
+      language: this.language,
+      theme: this.theme
+    });
   }
 }

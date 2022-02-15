@@ -1,5 +1,6 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {CodeEditorAppComponent} from "ngx-code-editor";
+import {environment} from "../environments/environment";
 
 @Component({
   selector: 'app-root',
@@ -8,8 +9,8 @@ import {CodeEditorAppComponent} from "ngx-code-editor";
 })
 export class AppComponent implements OnInit {
 
-  /* baseHref of the assets */
-  baseUrl = 'ngx-code-editor'
+  /* baseHref path */
+  @Input() baseUrl: string = environment.production?'ngx-code-editor':'';
   /* default language */
   language: string = 'java';
   /* default theme */
@@ -29,7 +30,9 @@ export class AppComponent implements OnInit {
     this.defaultValue = '';
     this.codeEditorApp?.setValue('test');
   }
+
   async ngOnInit() {
+    // optional
     await this.codeEditorApp?.ngOnInit();
   }
 

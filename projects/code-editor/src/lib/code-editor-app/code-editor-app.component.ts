@@ -59,9 +59,11 @@ export class CodeEditorAppComponent implements OnInit, OnChanges {
       loader = new LoadMonacoEditor(baseUrl, this.language, this.theme, this.defaultValue, this.localizeCode);
     }
     await loader.load();
+    // call function to create code-editor every time
+    loader.createMonacoEditor();
     // listen the change of keyUp and output the value
     const win = window as any;
-    win.rgCodeEditor.onKeyUp((res: any) => {
+    win.ngxCodeEditor.onKeyUp((res: any) => {
       this.contentChange.next(res?.target?.value);
     });
   }
@@ -79,7 +81,7 @@ export class CodeEditorAppComponent implements OnInit, OnChanges {
    */
   languageChange() {
     const win = window as any;
-    win.monaco.editor.setModelLanguage(win.rgCodeEditor.getModel(), this.language);
+    win.monaco.editor.setModelLanguage(win.ngxCodeEditor.getModel(), this.language);
   }
 
   /**
@@ -87,7 +89,7 @@ export class CodeEditorAppComponent implements OnInit, OnChanges {
    */
   getValue(): string {
     const win = window as any;
-    const value = win.rgCodeEditor.getValue();
+    const value = win.ngxCodeEditor.getValue();
     return value;
   }
 
@@ -96,6 +98,6 @@ export class CodeEditorAppComponent implements OnInit, OnChanges {
    */
   setValue(value?: string) {
     const win = window as any;
-    win.rgCodeEditor.setValue(value || this.defaultValue);
+    win.ngxCodeEditor.setValue(value || this.defaultValue);
   }
 }

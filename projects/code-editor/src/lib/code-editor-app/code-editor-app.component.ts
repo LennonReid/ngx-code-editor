@@ -80,7 +80,7 @@ export class CodeEditorAppComponent implements OnInit, OnChanges {
    */
   languageChange() {
     const win = window as any;
-    win.monaco.editor.setModelLanguage(win.rgCodeEditor.getModel(), this.language);
+    win.monaco.editor.setModelLanguage(win.ngxCodeEditor.getModel(), this.language);
   }
 
   /**
@@ -88,7 +88,7 @@ export class CodeEditorAppComponent implements OnInit, OnChanges {
    */
   getValue(): string {
     const win = window as any;
-    const value = win.rgCodeEditor.getValue();
+    const value = win.ngxCodeEditor.getValue();
     return value;
   }
 
@@ -97,6 +97,6 @@ export class CodeEditorAppComponent implements OnInit, OnChanges {
    */
   setValue(value?: string) {
     const win = window as any;
-    win.rgCodeEditor.setValue(value || this.defaultValue);
+    win.ngxCodeEditor.setValue(value || this.defaultValue);
   }
 }

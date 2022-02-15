@@ -32,6 +32,7 @@ export class AppComponent implements OnInit {
   }
 
   async ngOnInit() {
+    // optional
     await this.codeEditorApp?.ngOnInit();
   }
 

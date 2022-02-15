@@ -54,16 +54,16 @@ examples:
         "assets": [
           "apps/dev-code-editor/src/favicon.ico",
           "apps/dev-code-editor/src/assets",
-+          {
-+            "glob": "**/*",
-+            "input": "./node_modules/monaco-editor",
-+            "output": "monaco-editor/"
-+          },
-+          {
-+            "glob": "**/*",
-+            "input": "./node_modules/monaco-ace-tokenizer",
-+            "output": "monaco-ace-tokenizer/"
-+          }
+          +          {
+            +            "glob": "**/*",
+          +            "input": "./node_modules/monaco-editor",
+          +            "output": "monaco-editor/"
+          +          },
+          +          {
+            +            "glob": "**/*",
+          +            "input": "./node_modules/monaco-ace-tokenizer",
+          +            "output": "monaco-ace-tokenizer/"
+          +          }
         ],
         "styles": ["apps/dev-code-editor/src/styles.scss"],
         "scripts": []
@@ -205,6 +205,7 @@ export class AppComponent implements OnInit {
     this.codeEditorApp?.setValue('test');
   }
   async ngOnInit() {
+    // optional 
     await this.codeEditorApp?.ngOnInit();
   }
 

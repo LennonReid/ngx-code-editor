@@ -205,6 +205,7 @@ export class AppComponent implements OnInit {
     this.codeEditorApp?.setValue('test');
   }
   async ngOnInit() {
+      // optional 
     await this.codeEditorApp?.ngOnInit();
   }
 

@@ -38,10 +38,10 @@ export class LoadMonacoEditor {
     if (!this.#load) {
       this.#load = new Promise<void>(resolve => {
         const win = window as any;
-        if (typeof win.monaco === 'object') {
-          resolve();
-          return;
-        }
+        // if (typeof win.monaco === 'object') {
+        //   resolve();
+        //   return;
+        // }
         const onGotAMDLoader = () => {
           win.require.config({
             paths: {

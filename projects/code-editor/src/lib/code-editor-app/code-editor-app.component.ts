@@ -58,9 +58,11 @@ export class CodeEditorAppComponent implements OnInit, OnChanges {
       loader = new LoadMonacoEditor(baseUrl, this.language, this.theme, this.defaultValue, this.localizeCode);
     }
     await loader.load();
+    // call function to create code-editor every time
+    loader.createMonacoEditor();
     // listen the change of keyUp and output the value
     const win = window as any;
-    win.rgCodeEditor.onKeyUp((res: any) => {
+    win.ngxCodeEditor.onKeyUp((res: any) => {
       this.contentChange.next(res?.target?.value);
     });
   }

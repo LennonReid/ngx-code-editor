@@ -80,7 +80,9 @@ export class LoadMonacoEditor {
           const loaderScript: HTMLScriptElement = document.createElement('script');
           loaderScript.id = 'ngx-code-editor-load-monaco-script';
           loaderScript.type = 'text/javascript';
+          console.log(urlJoin(this.baseUrl, 'monaco-editor/min/vs/loader.js'));
           loaderScript.src = urlJoin(this.baseUrl, 'monaco-editor/min/vs/loader.js');
+          console.log(urlJoin(this.baseUrl, 'monaco-editor/min/vs/loader.js'));
           loaderScript.addEventListener('load', onGotAMDLoader);
           document.body.appendChild(loaderScript);
         } else {

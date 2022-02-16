@@ -367,7 +367,7 @@ export class AppComponent implements OnInit {
 
 > > > 8. Switch Current Theme
 > > >
-> > > - below is supported themes now(need extends to [demo](https://aeditor.bitwiser.in/))
+> > > - below is supported themes now(need extends to [demo](https://editor.bitwiser.in/))
 
 ```html
 <option value="vs">VS</option>

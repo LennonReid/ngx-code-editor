@@ -10,9 +10,9 @@ import {environment} from "../environments/environment";
 export class AppComponent implements OnInit {
 
   /* baseHref path */
-  @Input() baseUrl: string = environment.production ? '/ngx-code-editor' : '';
+  @Input() baseUrl: string = environment.production ? 'ngx-code-editor' : '';
   /* default language */
-  language: string = 'java';
+  language: string = 'javascript';
   /* default theme */
   theme: string = 'vs';
   /* default value of the content */
@@ -34,6 +34,17 @@ export class AppComponent implements OnInit {
   async ngOnInit() {
     // optional
     await this.codeEditorApp?.ngOnInit();
+    setTimeout(() => {
+      this.defaultValue = 'let data = [1,2,3,4,5];\n' +
+        'console.log(...data);\n' +
+        '// --> 1 2 3 4 5\n' +
+        'let data2 = [6,7,8,9,10];\n' +
+        'let combined = [...data, ...data2];\n' +
+        'console.log(...combined);\n' +
+        '// --> 1 2 3 4 5 6 7 8 9 10\n' +
+        'console.log(Math.max(...combined));\n' +
+        '// --> 10';
+    }, 2000);
   }
 
   /**

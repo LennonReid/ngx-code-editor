@@ -1,6 +1,15 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, TemplateRef} from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  TemplateRef
+} from '@angular/core';
 import {LoadMonacoEditor} from "../utils/load-monaco-editor";
 import {getBaseMonacoUrl} from "../utils/base-url";
+import {BehaviorSubject} from "rxjs";
 
 let loader: LoadMonacoEditor;
 
@@ -9,7 +18,7 @@ let loader: LoadMonacoEditor;
   templateUrl: './code-editor-app.component.html',
   styleUrls: ['./code-editor-app.component.scss']
 })
-export class CodeEditorAppComponent implements OnInit, OnChanges {
+export class CodeEditorAppComponent implements OnInit, OnDestroy {
   /* default path */
   @Input() baseUrl?: string;
   /**
@@ -18,11 +27,41 @@ export class CodeEditorAppComponent implements OnInit, OnChanges {
    */
   @Input() localizeCode?: string;
   /* default code language */
-  @Input() language: string = 'java';
+  language$: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  private _language = '';
+  get language() {
+    return this._language;
+  }
+
+  @Input() set language(language: string) {
+    this.language$.next(language);
+    this._language = language;
+  }
+
   /* default theme */
-  @Input() theme: string = 'vs';
+  theme$: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  private _theme = 'vs';
+  get theme() {
+    return this._theme;
+  }
+
+  @Input() set theme(theme: string) {
+    this.theme$.next(theme);
+    this._theme = theme;
+  }
+
   /* default code value */
-  @Input() defaultValue?: string;
+  defaultValue$: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  private _defaultValue = '';
+  get defaultValue() {
+    return this._defaultValue;
+  }
+
+  @Input() set defaultValue(defaultValue: string) {
+    this.defaultValue$.next(defaultValue);
+    this._defaultValue = defaultValue;
+  }
+
   /* width of conetnt area need a fixed value */
   @Input() contentWidth: number = 800;
   /* height of conetnt area need a fixed value */
@@ -39,17 +78,10 @@ export class CodeEditorAppComponent implements OnInit, OnChanges {
   constructor() {
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['language'] && !changes['language'].firstChange) {
-      this.languageChange();
-    }
-    if (changes['theme'] && !changes['theme'].firstChange) {
-      this.themeChange();
-    }
-    // todo: not working,doubt that there is a problem of reference path
-    if (changes['defaultValue'] && !changes['defaultValue'].firstChange) {
-      this.setValue();
-    }
+  ngOnDestroy() {
+    this.language$?.unsubscribe();
+    this.theme$?.unsubscribe();
+    this.defaultValue$?.unsubscribe();
   }
 
   async ngOnInit() {
@@ -64,25 +96,35 @@ export class CodeEditorAppComponent implements OnInit, OnChanges {
     loader.createMonacoEditor();
 
     // listen changes of the conetnt and emit the current value
-    win.rgCodeEditor.onDidChangeModelContent((res: any) => {
+    win.rgCodeEditor?.onDidChangeModelContent((res: any) => {
       this.contentChange.next(this.getValue());
+    });
+
+    this.language$.subscribe(language => {
+      this.languageChange(language);
+    });
+    this.theme$.subscribe(theme => {
+      this.themeChange(theme);
+    });
+    this.defaultValue$.subscribe(defaultValue => {
+      this.setValue(defaultValue);
     });
   }
 
   /**
    * switch theme
    */
-  themeChange() {
+  themeChange(theme: string) {
     const win = window as any;
-    win.monaco.editor.setTheme(this.theme);
+    win.monaco?.editor?.setTheme(theme || this.theme);
   }
 
   /**
    * switch code language
    */
-  languageChange() {
+  languageChange(language: string) {
     const win = window as any;
-    win.monaco.editor.setModelLanguage(win.ngxCodeEditor.getModel(), this.language);
+    win.monaco?.editor?.setModelLanguage(win.ngxCodeEditor?.getModel(), language || this.language);
   }
 
   /**
@@ -90,7 +132,7 @@ export class CodeEditorAppComponent implements OnInit, OnChanges {
    */
   getValue(): string {
     const win = window as any;
-    const value = win.ngxCodeEditor.getValue();
+    const value = win.ngxCodeEditor?.getValue();
     return value;
   }
 
@@ -99,6 +141,6 @@ export class CodeEditorAppComponent implements OnInit, OnChanges {
    */
   setValue(value?: string) {
     const win = window as any;
-    win.ngxCodeEditor.setValue(value || this.defaultValue);
+    win.ngxCodeEditor?.setValue(value || this.defaultValue);
   }
 }

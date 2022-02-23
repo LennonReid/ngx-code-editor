@@ -1,6 +1,6 @@
 import {
   Component,
-  EventEmitter,
+  EventEmitter, Inject,
   Input,
   OnDestroy,
   OnInit,
@@ -10,6 +10,7 @@ import {
 import {LoadMonacoEditor} from "../utils/load-monaco-editor";
 import {getBaseMonacoUrl} from "../utils/base-url";
 import {BehaviorSubject} from "rxjs";
+import {ICodeEditorOptions, NGX_CODE_EDITOR} from "../interfaces/code-editor.interface";
 
 let loader: LoadMonacoEditor;
 
@@ -75,8 +76,7 @@ export class CodeEditorAppComponent implements OnInit, OnDestroy {
   /* customize the selelection Area */
   @Input() selection?: TemplateRef<any>;
 
-  constructor() {
-  }
+  constructor(@Inject(NGX_CODE_EDITOR) private options: ICodeEditorOptions) {}
 
   ngOnDestroy() {
     this.language$?.unsubscribe();
@@ -86,7 +86,7 @@ export class CodeEditorAppComponent implements OnInit, OnDestroy {
 
   async ngOnInit() {
     const win = window as any;
-    const baseUrl = getBaseMonacoUrl(this.baseUrl);
+    const baseUrl = getBaseMonacoUrl(this.baseUrl || this.options?.resourcesUrl);
     if (!loader) {
       loader = new LoadMonacoEditor(baseUrl, this.language, this.theme, this.defaultValue, this.localizeCode);
     }

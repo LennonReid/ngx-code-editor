@@ -10,7 +10,7 @@ import {environment} from "../environments/environment";
   declarations: [AppComponent],
   imports: [BrowserModule, FormsModule, CodeEditorAppModule.forRoot({
     production: environment.production,
-    resourcesUrl: ''
+    resourcesUrl: '/ngx-code-editor/'
   })],
   providers: [],
   bootstrap: [AppComponent]

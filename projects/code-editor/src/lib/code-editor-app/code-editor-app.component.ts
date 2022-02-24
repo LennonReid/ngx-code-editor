@@ -78,9 +78,9 @@ export class CodeEditorAppComponent implements OnInit, OnDestroy {
   @Input() selection?: TemplateRef<any>;
 
   constructor(
+    @Inject(NGX_CODE_EDITOR) private options: ICodeEditorOptions,
     private locationStrategy: LocationStrategy
-  ) {
-  }
+    ) {}
 
   ngOnDestroy() {
     this.language$?.unsubscribe();
@@ -90,7 +90,7 @@ export class CodeEditorAppComponent implements OnInit, OnDestroy {
 
   async ngOnInit() {
     const win = window as any;
-    const baseUrl = getBaseMonacoUrl(this.baseUrl || this.locationStrategy.getBaseHref());
+    const baseUrl = getBaseMonacoUrl(this.baseUrl || this.options?.resourcesUrl || this.locationStrategy.getBaseHref());
     if (!loader) {
       loader = new LoadMonacoEditor(baseUrl, this.language, this.theme, this.defaultValue, this.localizeCode);
     }

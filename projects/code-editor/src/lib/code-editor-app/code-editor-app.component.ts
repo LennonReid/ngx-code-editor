@@ -11,6 +11,7 @@ import {LoadMonacoEditor} from "../utils/load-monaco-editor";
 import {getBaseMonacoUrl} from "../utils/base-url";
 import {BehaviorSubject} from "rxjs";
 import {ICodeEditorOptions, NGX_CODE_EDITOR} from "../interfaces/code-editor.interface";
+import {LocationStrategy} from "@angular/common";
 
 let loader: LoadMonacoEditor;
 
@@ -76,7 +77,11 @@ export class CodeEditorAppComponent implements OnInit, OnDestroy {
   /* customize the selelection Area */
   @Input() selection?: TemplateRef<any>;
 
-  constructor(@Inject(NGX_CODE_EDITOR) private options: ICodeEditorOptions) {}
+  constructor(
+    @Inject(NGX_CODE_EDITOR) private options: ICodeEditorOptions,
+    private locationStrategy: LocationStrategy
+  ) {
+  }
 
   ngOnDestroy() {
     this.language$?.unsubscribe();
@@ -86,7 +91,7 @@ export class CodeEditorAppComponent implements OnInit, OnDestroy {
 
   async ngOnInit() {
     const win = window as any;
-    const baseUrl = getBaseMonacoUrl(this.baseUrl || this.options?.resourcesUrl);
+    const baseUrl = getBaseMonacoUrl(this.baseUrl || this.options.resourcesUrl || this.locationStrategy.getBaseHref());
     if (!loader) {
       loader = new LoadMonacoEditor(baseUrl, this.language, this.theme, this.defaultValue, this.localizeCode);
     }

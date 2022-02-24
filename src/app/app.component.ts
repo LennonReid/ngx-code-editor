@@ -9,8 +9,6 @@ import {environment} from "../environments/environment";
 })
 export class AppComponent implements OnInit {
 
-  /* baseHref path */
-  @Input() baseUrl: string = environment.production ? '/ngx-code-editor' : '';
   /* default language */
   language: string = 'javascript';
   /* default theme */
